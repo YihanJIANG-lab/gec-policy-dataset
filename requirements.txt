@@ -1,0 +1,17 @@
+# GEC-Radar 依赖（论文产物冻结版本，2026-10-05）
+# 安装：python -m pip install -r requirements.txt
+# 注：chronos 模型权重首次使用时从 HuggingFace 下载（国内可用 HF_ENDPOINT=https://hf-mirror.com）
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+pyyaml>=6.0
+openpyxl>=3.1
+numpy>=2.0
+pandas>=3.0
+scikit-learn>=1.5
+statsmodels>=0.14
+scipy>=1.13
+torch>=2.2        # CPU wheel 即可复现全部结果（3060 6GB GPU 非必需）
+prophet>=1.5
+chronos-forecasting>=1.4
+pypdf>=4.0

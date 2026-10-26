@@ -1,0 +1,55 @@
+# GEC-Radar 信源配置
+# 关键词：列表页标题或详情页正文命中任一关键词才入库
+keywords:
+  - 绿证
+  - 绿色电力证书
+  - 消纳责任权重
+  - 绿色电力消费
+  - 可再生能源电力消纳
+  - 绿电交易
+  - 绿色电力交易
+
+# 全局请求策略（礼貌抓取）
+request:
+  timeout: 20          # 单次请求超时（秒）
+  retries: 2           # 失败重试次数（指数退避）
+  delay_seconds: [1.0, 2.0]  # 两次请求之间的随机间隔（秒）
+
+sources:
+  - code: nea
+    name: 国家能源局
+    enabled: true
+    fetch_interval_hours: 24   # 建议抓取间隔（供调度参考）
+    entry_urls:
+      - https://www.nea.gov.cn/policy/tz.htm   # 通知
+      - https://www.nea.gov.cn/policy/gg.htm   # 公告
+
+  - code: ndrc
+    name: 国家发展改革委
+    enabled: true
+    fetch_interval_hours: 24
+    search_url: https://so.ndrc.gov.cn/s       # 站内智能云搜索入口
+    api_base: https://sogw.ndrc.gov.cn/apiservice/
+    site_code: bm04000007
+
+  - code: gzpec
+    name: 广州电力交易中心
+    enabled: true
+    fetch_interval_hours: 24
+    entry_urls:
+      - https://www.gzpec.cn/information/zxtz/   # 最新通知（公示公告栏目为外部JS应用，未接入）
+
+  - code: nmg
+    name: 内蒙古自治区能源局
+    enabled: true
+    fetch_interval_hours: 24
+    entry_urls:
+      - https://nyj.nmg.gov.cn/tzgg/   # 通知公告
+
+# 价格信源（crawl_prices.py 使用）
+price_sources:
+  - code: greenenergy
+    name: 中国绿色电力证书交易平台
+    enabled: true
+    fetch_interval_hours: 24
+    api_url: http://www.greenenergy.org.cn/sgcc-apinterface/api/pc/product/list

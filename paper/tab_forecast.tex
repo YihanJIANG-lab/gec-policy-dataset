@@ -1,0 +1,26 @@
+% Auto-generated: src/forecast/run_diagnostics.py -- main Table 2 (weekly core, v4.2)
+% Weekly:52 grid points,47 observed;5 causal-forward-filled training weeks;23 observed evaluation targets.
+% +Oracle = same-period features by retrospective assumption; +Lag1 = one-period event proxy;
+% +Placebo = date-permuted event features, mean of 3 seeds. DirAcc tie-aware.
+% SNaive(4): period-4 seasonal naive as robustness reference (series too short to
+% identify genuine seasonality; included for completeness).
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \caption{Weekly GEC price forecasting (rolling-origin, $h$=1; MAE in CNY/certificate). Monthly series, feature-group ablation, lag scan and per-cell CIs are in Appendix~\ref{app:forecast}.}
+  \label{tab:forecast}
+  \begin{tabular}{lcccccc}
+    \toprule
+    Model & Base & +Oracle & +Lag1 & +Placebo & Dir.Acc(\%) & Move(\%) \\
+    \midrule
+    Naive & 0.496 & -- & -- & -- & -- & 0 \\
+    SNaive(4) & 0.520 & -- & -- & -- & 57 & 100 \\
+    Chronos-t5-tiny(zs) & 0.411 & -- & -- & -- & 61 & 100 \\
+    \midrule
+    ARIMA & 0.378 & 0.638 & 0.463 & 0.484 & 65 & 100 \\
+    LSTM & 0.616 & 0.632 & 0.650 & 0.466 & 61 & 100 \\
+    Patch Transformer (local) & 0.487 & 0.618 & 0.521 & 0.499 & 65 & 100 \\
+    Prophet & 0.598 & 0.736 & 0.796 & 0.709 & 57 & 100 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

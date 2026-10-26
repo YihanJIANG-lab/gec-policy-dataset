@@ -1,0 +1,28 @@
+% Auto-generated: src/forecast/run_diagnostics.py (appendix monthly)
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \caption{Monthly results: Monthly average deal price, 2024 vintage (NEA bulletin, 16 points) (6 folds)}
+  \label{tab:app_monthly_a}
+  \begin{tabular}{lccccc}
+    \toprule
+    Model & MAE & RMSE & MAPE(\%) & Dir.Acc(\%) & EventWin-MAE \\
+    \midrule
+    Naive & 0.447 & 0.573 & 35.9 & -- & 0.270 \\
+    SNaive(4) & 0.850 & 1.175 & 65.9 & 50 & 0.517 \\
+    ARIMA & 0.595 & 0.705 & 51.7 & 50 & 0.348 \\
+    ARIMA+Evt & 0.808 & 1.217 & 81.9 & 67 & 1.337 \\
+    ARIMA+Evt\,(lag1) & 1.404 & 1.583 & 114.5 & 17 & 0.883 \\
+    LSTM & 0.656 & 0.905 & 55.8 & 33 & 0.356 \\
+    LSTM+Evt & 0.664 & 0.727 & 56.5 & 50 & 0.716 \\
+    LSTM+Evt\,(lag1) & 0.654 & 0.715 & 57.8 & 33 & 0.686 \\
+    Patch Transformer (local) & 0.518 & 0.658 & 47.8 & 67 & 0.590 \\
+    Patch Transformer (local)+Evt & 0.992 & 1.170 & 85.0 & 50 & 0.623 \\
+    Patch Transformer (local)+Evt\,(lag1) & 0.769 & 1.101 & 65.5 & 50 & 0.282 \\
+    Chronos-t5-tiny(zs) & 0.467 & 0.556 & 37.7 & 33 & 0.333 \\
+    Prophet & 0.439 & 0.509 & 37.5 & 67 & 0.256 \\
+    Prophet+Evt & 0.626 & 0.954 & 64.5 & 83 & 1.124 \\
+    Prophet+Evt\,(lag1) & 0.989 & 1.207 & 89.7 & 33 & 0.722 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

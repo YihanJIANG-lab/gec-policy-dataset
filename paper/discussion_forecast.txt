@@ -1,0 +1,30 @@
+% Discussion paragraph for the forecasting experiment (Table 2, v3, final). 2026-10-05.
+Several caveats bound the interpretation of our forecasting results. First, the official
+monthly price series runs only 16 consecutive observations (2025-04 to 2026-07) and the
+weekly series 52 weeks, of which 5 are linearly interpolated (3 falling inside the
+evaluation window; excluding them leaves all model rankings and headline metrics
+essentially unchanged). Rolling-origin evaluation therefore yields only 6 monthly and
+26 weekly origins, and the event-window subset contains merely 3 monthly folds, so
+moderate differences between models are not statistically distinguishable. Second, our
+event features cover only the 60 seed documents of the gold set plus six manually
+verified key policies; they are an incomplete and possibly misaligned proxy of the true
+policy-event stream. We thus read the event-augmentation outcomes as conservative,
+descriptive evidence under incomplete event coverage, not as a lower bound on the true
+effect: missing events may attenuate the estimated gain, while sparse noisy indicators
+may also contaminate it. Third, we disclose two settings for event features: an oracle
+setting with same-period features (an upper-bound, calendar-known scenario) and a
+real-time lag-1 setting. Event features improve MAE in only a small minority of the 16
+ablation cells (2/16 oracle, 1/16 lag-1). The only systematic pattern we observe is
+that, for most models on the weekly series (3 of 4 families), lag-1 features degrade
+accuracy by less than oracle features; this pattern does not hold overall (7/16 cells)
+and the average degradation is in fact larger under lag-1 (0.286 vs. 0.188 yuan), so we
+do not generalize it. All event-augmented variants produce non-flat forecasts, whereas
+some baselines (ARIMA in particular) still degenerate to flat forecasts on the monthly
+series; correspondingly, tie-aware direction accuracy improves from undefined for such
+flat baselines to 67-83% in selected oracle settings. Three cells show numerical MAE
+gains of 0.01-0.05 yuan, but paired bootstrap and Diebold-Mariano tests (n=6 folds)
+yield p-values of 0.78-0.96; they constitute no stable or statistically meaningful
+evidence. Overall, short-term green-certificate prices exhibit strong persistence, and
+policy features do not yet yield stable incremental predictive power at the current
+data density. A systematic evaluation with richer event coverage, longer official
+series, and Diebold-Mariano tests across all cells is left to future work.

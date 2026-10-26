@@ -1,0 +1,45 @@
+% Auto-generated: placebo check (appendix Table A2)
+\begin{table*}[t]
+  \centering
+  \scriptsize
+  \caption{Placebo check: real vs.\ date-permuted event features (mean of 3 seeds). MAE, CNY/certificate}
+  \label{tab:app_placebo}
+  \begin{tabular}{llcccc}
+    \toprule
+    Series & Family & Base & Real & Placebo & Real$-$Placebo \\
+    \midrule
+    W:overall & ARIMA(oracle) & 0.378 & 0.638 & 0.484 & +0.154 \\
+    W:overall & ARIMA(lag1) & 0.378 & 0.463 & 0.429 & +0.035 \\
+    W:overall & LSTM(oracle) & 0.616 & 0.632 & 0.466 & +0.166 \\
+    W:overall & LSTM(lag1) & 0.616 & 0.650 & 0.621 & +0.029 \\
+    W:overall & Patch Transformer (local)(oracle) & 0.487 & 0.618 & 0.499 & +0.119 \\
+    W:overall & Patch Transformer (local)(lag1) & 0.487 & 0.521 & 0.479 & +0.041 \\
+    W:overall & Prophet(oracle) & 0.598 & 0.736 & 0.709 & +0.027 \\
+    W:overall & Prophet(lag1) & 0.598 & 0.796 & 0.655 & +0.141 \\
+    M:2024vint. & ARIMA(oracle) & 0.595 & 0.808 & 0.922 & -0.114 \\
+    M:2024vint. & ARIMA(lag1) & 0.595 & 1.404 & 1.047 & +0.356 \\
+    M:2024vint. & LSTM(oracle) & 0.656 & 0.664 & 0.533 & +0.131 \\
+    M:2024vint. & LSTM(lag1) & 0.656 & 0.654 & 0.540 & +0.114 \\
+    M:2024vint. & Patch Transformer (local)(oracle) & 0.518 & 0.992 & 0.655 & +0.336 \\
+    M:2024vint. & Patch Transformer (local)(lag1) & 0.518 & 0.769 & 0.656 & +0.113 \\
+    M:2024vint. & Prophet(oracle) & 0.439 & 0.626 & 0.702 & -0.076 \\
+    M:2024vint. & Prophet(lag1) & 0.439 & 0.989 & 0.916 & +0.073 \\
+    M:2025vint. & ARIMA(oracle) & 0.522 & 0.847 & 0.738 & +0.108 \\
+    M:2025vint. & ARIMA(lag1) & 0.522 & 0.778 & 0.781 & -0.003 \\
+    M:2025vint. & LSTM(oracle) & 0.426 & 1.015 & 0.571 & +0.444 \\
+    M:2025vint. & LSTM(lag1) & 0.426 & 0.750 & 0.604 & +0.146 \\
+    M:2025vint. & Patch Transformer (local)(oracle) & 0.512 & 0.928 & 0.880 & +0.048 \\
+    M:2025vint. & Patch Transformer (local)(lag1) & 0.512 & 1.142 & 1.009 & +0.133 \\
+    M:2025vint. & Prophet(oracle) & 0.888 & 0.874 & 1.137 & -0.263 \\
+    M:2025vint. & Prophet(lag1) & 0.888 & 1.438 & 1.197 & +0.241 \\
+    M:overall* & ARIMA(oracle) & 0.384 & 0.639 & 0.885 & -0.247 \\
+    M:overall* & ARIMA(lag1) & 0.384 & 0.790 & 0.948 & -0.158 \\
+    M:overall* & LSTM(oracle) & 0.424 & 0.684 & 0.769 & -0.085 \\
+    M:overall* & LSTM(lag1) & 0.424 & 0.443 & 0.624 & -0.182 \\
+    M:overall* & Patch Transformer (local)(oracle) & 0.656 & 0.796 & 0.945 & -0.149 \\
+    M:overall* & Patch Transformer (local)(lag1) & 0.656 & 0.794 & 0.917 & -0.123 \\
+    M:overall* & Prophet(oracle) & 0.625 & 0.762 & 0.986 & -0.224 \\
+    M:overall* & Prophet(lag1) & 0.625 & 1.028 & 1.116 & -0.088 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

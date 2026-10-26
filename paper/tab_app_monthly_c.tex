@@ -1,0 +1,28 @@
+% Auto-generated: src/forecast/run_diagnostics.py (appendix monthly)
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \caption{Monthly results: Monthly overall average (vintage volume-weighted, derived; 16 points) (6 folds)}
+  \label{tab:app_monthly_c}
+  \begin{tabular}{lccccc}
+    \toprule
+    Model & MAE & RMSE & MAPE(\%) & Dir.Acc(\%) & EventWin-MAE \\
+    \midrule
+    Naive & 0.384 & 0.546 & 8.3 & -- & 0.476 \\
+    SNaive(4) & 0.842 & 0.957 & 18.9 & 67 & 0.719 \\
+    ARIMA & 0.384 & 0.546 & 8.3 & -- & 0.476 \\
+    ARIMA+Evt & 0.639 & 0.807 & 13.4 & 83 & 0.654 \\
+    ARIMA+Evt\,(lag1) & 0.790 & 0.983 & 16.4 & 67 & 0.816 \\
+    LSTM & 0.424 & 0.481 & 9.5 & 100 & 0.401 \\
+    LSTM+Evt & 0.684 & 0.818 & 14.5 & 67 & 0.624 \\
+    LSTM+Evt\,(lag1) & 0.443 & 0.578 & 9.5 & 67 & 0.432 \\
+    Patch Transformer (local) & 0.656 & 0.911 & 13.7 & 33 & 0.359 \\
+    Patch Transformer (local)+Evt & 0.796 & 1.036 & 16.8 & 67 & 0.631 \\
+    Patch Transformer (local)+Evt\,(lag1) & 0.794 & 0.988 & 16.2 & 67 & 0.539 \\
+    Chronos-t5-tiny(zs) & 0.490 & 0.556 & 10.6 & 67 & 0.572 \\
+    Prophet & 0.625 & 0.807 & 14.8 & 50 & 0.811 \\
+    Prophet+Evt & 0.762 & 0.816 & 16.2 & 50 & 0.849 \\
+    Prophet+Evt\,(lag1) & 1.028 & 1.096 & 23.1 & 50 & 1.109 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

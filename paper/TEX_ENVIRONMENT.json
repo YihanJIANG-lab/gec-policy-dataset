@@ -1,0 +1,359 @@
+{
+  "compiler": "MiKTeX-pdfTeX 4.23 (MiKTeX 25.12)",
+  "class_sha256": "6895475b24fe526c12831f5cc1d16f37218ce5d65161f811dde4bce8dc4551b9",
+  "system_packages": [
+    {
+      "file": "acmart.cls",
+      "sha256": "6895475b24fe526c12831f5cc1d16f37218ce5d65161f811dde4bce8dc4551b9"
+    },
+    {
+      "file": "xkeyval.sty",
+      "sha256": "6904c396f2a6992921823387576b7f75074ac3b8e047a8c80687a869aba1e3ae"
+    },
+    {
+      "file": "xstring.sty",
+      "sha256": "6b2fdbe2c3a1f873a6c19fc8da67001e269580be2827040b152cc59216b022c4"
+    },
+    {
+      "file": "iftex.sty",
+      "sha256": "0dc0cefe2131f82330a3b8e62034c184455329d7d9bb94abe21e740821630381"
+    },
+    {
+      "file": "amsart.cls",
+      "sha256": "c8bf939ae935d62d4ced49e4e8f9f4f5ff3dd4a4bc8e0abd4991f5737caee4f7"
+    },
+    {
+      "file": "amsmath.sty",
+      "sha256": "4c0bfd7d67ea18214810a21244f8426da40d04af5bb90ed201b85cc5e211d321"
+    },
+    {
+      "file": "amsopn.sty",
+      "sha256": "c50239a5acc1037ff4df482878e5546be3cd9b8ac725151bc14748a103d800a8"
+    },
+    {
+      "file": "amstext.sty",
+      "sha256": "7a6d33e95e168f90cec6d4172aeae7da885924a8f587ccc11817e1dab4d50ba9"
+    },
+    {
+      "file": "amsgen.sty",
+      "sha256": "e7ef677a56e22d8da915e613c65fe2d4c2fe8744ffb283c2ccfdfc066e45e158"
+    },
+    {
+      "file": "amsbsy.sty",
+      "sha256": "c09b1b14dfe8a81b6791673b3bc5a7fd8b794fb063b6e8b5ce79fc28c7e59c8c"
+    },
+    {
+      "file": "amsfonts.sty",
+      "sha256": "dab8b0e621267acfd89736cf97bdcc02647c545c0719c4997be8a7d1bf98f9c3"
+    },
+    {
+      "file": "microtype.sty",
+      "sha256": "49f84ac779174f3295733b64fcf382fde6178b09c2c67c198fdf0167c2f3e71d"
+    },
+    {
+      "file": "keyval.sty",
+      "sha256": "d3faa310a1e4485b8efb1ed3ae8b11f9552e70b630dc35290a7aabdcd064b09a"
+    },
+    {
+      "file": "etoolbox.sty",
+      "sha256": "e48026fcea59b4906d1fd47bde658cb5caf0a7928c45a45ea563b18d5b40ebd4"
+    },
+    {
+      "file": "microtype-pdftex.def",
+      "sha256": "591554be1f787c98c3b9751750c53eb35a848e9d7260951d42b54f02d29e308c"
+    },
+    {
+      "file": "microtype.cfg",
+      "sha256": "38ed6ed6c40d85163281b6d45ad9949c9566acf5f9fa03b1363e42f18b5e1258"
+    },
+    {
+      "file": "booktabs.sty",
+      "sha256": "b5c377fc40b0acf33dfa034eb5087ed71226de849dde6106812716280f95f6cc"
+    },
+    {
+      "file": "refcount.sty",
+      "sha256": "1bd5d42025520bef74f8808af99cf3f3be7d2e3774b9931bf85c11ba81bb6cab"
+    },
+    {
+      "file": "ltxcmds.sty",
+      "sha256": "8fea89995d37ba4c69137186faafc589c470edcc5026d8a31aadbe5cef47dcb4"
+    },
+    {
+      "file": "infwarerr.sty",
+      "sha256": "8c3e23b8bb7d940ff26cb0cf96e0151f540acf55020dc3c1aa8bcdb2eb66305c"
+    },
+    {
+      "file": "totpages.sty",
+      "sha256": "ddb3747293c15132300a5f2d67824ae4cbafe005dae85796b5c6eb2935e83ada"
+    },
+    {
+      "file": "everyshi.sty",
+      "sha256": "b585ed35a8dfbb7fc6fcb31f632d11b335e0d907036a9b965268e8e2da9a216b"
+    },
+    {
+      "file": "environ.sty",
+      "sha256": "2efd7043a5a2ec8d495bd7575408b118ba737b9303259cffa74572d28b0da608"
+    },
+    {
+      "file": "trimspaces.sty",
+      "sha256": "8e9907a5787d119339d60775c68d4a42e84f0b3993acf567600440dd161c52f8"
+    },
+    {
+      "file": "natbib.sty",
+      "sha256": "6f2454e1b60fea87d4466fb68780afbf73b53bc53adf58512547425ddcef6733"
+    },
+    {
+      "file": "hyperref.sty",
+      "sha256": "2f4e273fd02a736d3b4c9479fa5e535ac8dc77ababc7747b2ad85ecfccf09f76"
+    },
+    {
+      "file": "kvsetkeys.sty",
+      "sha256": "e3fcf7f3372a27bb478eb9488eca1e25ed382480d02a6898f190bd955388e055"
+    },
+    {
+      "file": "kvdefinekeys.sty",
+      "sha256": "c42f0c2628dc5fbd95b535cf8cd3cc964347653c099d38c0d416f896d84e8240"
+    },
+    {
+      "file": "pdfescape.sty",
+      "sha256": "b3f0e56366c11b85dae521f9a48a6fd415dec1ce8c83152fde813a9f64445b49"
+    },
+    {
+      "file": "pdftexcmds.sty",
+      "sha256": "2df7e0bd148c99d8097352b8ac9948dccf91d61ba360dcf43f82206933b6045b"
+    },
+    {
+      "file": "hycolor.sty",
+      "sha256": "a74cd5caae9685f54522941d2dc85522c41a833febb1bde90febb7c00e450575"
+    },
+    {
+      "file": "nameref.sty",
+      "sha256": "5dfa44a8a8a9eabe2c8e72a46e6997d3825d28fe65daea99b03b8b059a6a1a68"
+    },
+    {
+      "file": "gettitlestring.sty",
+      "sha256": "26ab10fd43fd5a90f98bcbed3a99978808da8878eb73835db4e0346371aee41e"
+    },
+    {
+      "file": "kvoptions.sty",
+      "sha256": "70595629ec990ba8c0b6e6a54afcff2603464e6fce380a54a98549a78d2fc74a"
+    },
+    {
+      "file": "stringenc.sty",
+      "sha256": "b134a7bba648a6987afc83ddfb6a3fcdad43bcae6b616e533eb484306d56ac45"
+    },
+    {
+      "file": "pd1enc.def",
+      "sha256": "49d7a97f9830087e38633177297d3f2f6a2177c266e0f4771015f07fa30f0bbe"
+    },
+    {
+      "file": "intcalc.sty",
+      "sha256": "1343ba1b10b245bfd199c22947249af1d756808690c7811c90f07fe0a3772080"
+    },
+    {
+      "file": "puenc.def",
+      "sha256": "fcf7ee9957bc5a3e0d4fb0e92ea1ec56bd5a191666512b1cbb9d051288db5108"
+    },
+    {
+      "file": "url.sty",
+      "sha256": "2373f56849ac606473e77053e5c1d14c92aba312b3f684e02a130eaf36f2de47"
+    },
+    {
+      "file": "bitset.sty",
+      "sha256": "af5c7196c69dc9d28225189169b60c9b9039125bc1756c04d54886f0a3e1891e"
+    },
+    {
+      "file": "bigintcalc.sty",
+      "sha256": "050f2ad3a3671a1f4f9bcf97784836301bc751507e7ada546632379406aea103"
+    },
+    {
+      "file": "hpdftex.def",
+      "sha256": "4dae00598fa3efa206c90e5638c71b77788c7044867afe161d7ddecd84386d8c"
+    },
+    {
+      "file": "rerunfilecheck.sty",
+      "sha256": "7771d8fb8f76147d1d6fc5b205c8989feb270bafccd6021570cd7e5152ead1d6"
+    },
+    {
+      "file": "uniquecounter.sty",
+      "sha256": "9d11c81501953d689787ff14c073d2f1eda5874068db9e882b8dbbf9a9d863b0"
+    },
+    {
+      "file": "hyperxmp.sty",
+      "sha256": "24fdc66d629c408d88dd699467446b621a8a726c561d86d580670931f702c86d"
+    },
+    {
+      "file": "ifmtarg.sty",
+      "sha256": "5d0da2d74bfd71ec185ff07bfb20eeef6e3191cd6cea7d426bd3d607ae664ca7"
+    },
+    {
+      "file": "ifthen.sty",
+      "sha256": "5cf8d0558b78d60e2fac171d6e3486f44d500974214ab9ad95e33ffb47fbb717"
+    },
+    {
+      "file": "ifdraft.sty",
+      "sha256": "78b7558e11281ca97779b269a693bedbc462a78cfcd0b5a16f3293ae97b279be"
+    },
+    {
+      "file": "ifluatex.sty",
+      "sha256": "1f1dd9c7cc37bfc574fdf4103a4b8e476e31a5058b0214f14985d2f5f018a221"
+    },
+    {
+      "file": "graphicx.sty",
+      "sha256": "90ffc59f1718ff399539023d15a5a2b14ce7d227b101c35ed64abcc7186c9338"
+    },
+    {
+      "file": "graphics.sty",
+      "sha256": "979abfd05c3f5453ebdc2683f2e2e1a24600255c7246e3708b5670168c7259c4"
+    },
+    {
+      "file": "trig.sty",
+      "sha256": "3c1add9bf649d1bee7db64bae800afb3dfac21b793afbbe2263553e0de66c450"
+    },
+    {
+      "file": "graphics.cfg",
+      "sha256": "feb91e48789a21e4acced98e952c77a2e2cf4a77e01bf147b59fa56a1b3f2008"
+    },
+    {
+      "file": "pdftex.def",
+      "sha256": "38361aed5c3534a46d63cd3cfd5cbb6367645c1d9b095cd2e45fd922ce821853"
+    },
+    {
+      "file": "xcolor.sty",
+      "sha256": "478888f8e8f00345fd645b6cdd6fa7db1e9efdd6f585b25c89bb3665d9029295"
+    },
+    {
+      "file": "color.cfg",
+      "sha256": "a3529ccdadc8248b4c5d7c34ceea53bdc1509b54f18a192ad51b924bd297d8df"
+    },
+    {
+      "file": "geometry.sty",
+      "sha256": "e7347acc8c80039c0a82efa67a59c1856b1ad38e64a2c20222de13e452ba6373"
+    },
+    {
+      "file": "ifvtex.sty",
+      "sha256": "1138730b9ad7d9f664b4760a4ea0ae0945afd21c006b76b67e623e863bbf3756"
+    },
+    {
+      "file": "geometry.cfg",
+      "sha256": "e012eccf73d41d8b66d5087338450c0f855c73f6646f0c084e9799915b07d19a"
+    },
+    {
+      "file": "manyfoot.sty",
+      "sha256": "cb1084e8036b765b97af05c6952588ef9d811a1d6011f0f9829fae626b38336c"
+    },
+    {
+      "file": "nccfoots.sty",
+      "sha256": "18a8ce0c1f94bbf47df8715ed450ebaf639f245d496dcdc78dda8bbd85ade06e"
+    },
+    {
+      "file": "cmap.sty",
+      "sha256": "67123f5846b014963904c7395605d3521e98e11493be933aacf45e2bb3c12327"
+    },
+    {
+      "file": "libertine.sty",
+      "sha256": "bc6732bba8b0e98b67c19d72cca01c2e3a82dad778ea086a5aa59a7dea33f326"
+    },
+    {
+      "file": "zi4.sty",
+      "sha256": "c5a59115a086b6ae56916ec168ff284dadbf04eb36add53a98ea6e1b942d4e6d"
+    },
+    {
+      "file": "newtxmath.sty",
+      "sha256": "5b866569cfc7171a7a36858067e33cdba6242c2fc18ad9a45bc9fcb86b2fc156"
+    },
+    {
+      "file": "fontenc.sty",
+      "sha256": "9ac0a88ddda40526aa1ec403c27a6325d3723c14fa9f02918011a79f93a72ef0"
+    },
+    {
+      "file": "ifxetex.sty",
+      "sha256": "b4729967ca572a3fbbcdc36f0e0764a53ae0855a0b7c3e29222ca119c054bd6e"
+    },
+    {
+      "file": "textcomp.sty",
+      "sha256": "b878faa3021fa7db900a465258779c8a124936d62417d5b2eb4c3dde08fbf891"
+    },
+    {
+      "file": "mweights.sty",
+      "sha256": "174cf004438bb6872d670d4971206ccda329a8c7e8939720fae80de545d90cf3"
+    },
+    {
+      "file": "fontaxes.sty",
+      "sha256": "e7e932af3be7aa76ff9774ed2d9aba523f7a851fc25ddde24e21df88c203253b"
+    },
+    {
+      "file": "figureversions.sty",
+      "sha256": "6a346fafcb6deb02e3f93a10516c8ce919716d208f4687e4176982cfb3b21861"
+    },
+    {
+      "file": "centernot.sty",
+      "sha256": "c95e2924dd95a051923b6a4ea0943fe8aba5ac887f3e6e1cde980ab0288ecfc7"
+    },
+    {
+      "file": "caption.sty",
+      "sha256": "94b3a07d83bfdc9171d3fcb5ea510e6a9ce01ff9bebac37a1dc066e55f6ad48f"
+    },
+    {
+      "file": "caption3.sty",
+      "sha256": "73f00aabd0be454c9e552841856c573e096ef42d032fe9fd1801763b1b37bea5"
+    },
+    {
+      "file": "float.sty",
+      "sha256": "ced7273693e3eccbc53ac4625d033e48296b5151086cc8077ec1c0460bd5ecb8"
+    },
+    {
+      "file": "comment.sty",
+      "sha256": "27b76432648ff0c428cc0f435d9caa015880fb7d7fc02fbce45f284451a7e7ab"
+    },
+    {
+      "file": "fancyhdr.sty",
+      "sha256": "9130c52f91087abc6d223164ffa587e207e3257fcbcd069ef09ecb5391043f14"
+    },
+    {
+      "file": "multirow.sty",
+      "sha256": "1ad428e46dc0b736132d2c6e87eccbf0947091ca7581733165cfee765cd0992c"
+    },
+    {
+      "file": "xspace.sty",
+      "sha256": "bfc949a20455e2c74b3179e795cdcaf4573d155e21e7733fb26ba46199bd412a"
+    },
+    {
+      "file": "balance.sty",
+      "sha256": "2b8f587a2da1c05c688e6d5295d8aca79fcfd1afc72e60cd127331966d4de1ff"
+    },
+    {
+      "file": "l3backend-pdftex.def",
+      "sha256": "24c194c31928335f4e29eee52bd200efac11263d4b69ef7350ef989e55ffe111"
+    },
+    {
+      "file": "epstopdf-base.sty",
+      "sha256": "3d2226e3d68b4255061baa496cc9cbc107816a7d364720c1bd8c83dccb047b64"
+    },
+    {
+      "file": "epstopdf-sys.cfg",
+      "sha256": "939496a02666f37addbc43e6e9a68d52c0e742ebf9aac2dd3f6284d19211219a"
+    },
+    {
+      "file": "upquote.sty",
+      "sha256": "63f845236af2a264e11636ca1dda196e7ecac632541f13c90803bbec1fae0911"
+    },
+    {
+      "file": "mt-msa.cfg",
+      "sha256": "1b338f55100686395d294258975d188876c6bed14f15393a2c4af610bd59280f"
+    },
+    {
+      "file": "mt-msb.cfg",
+      "sha256": "859dceb86efcaf0f0762c76b541b8a1dfb091f0a2141764c6dc019c7d0354ffd"
+    },
+    {
+      "file": "se-pdfdoc.def",
+      "sha256": "f168cc1772edb0e26b58974bd37ba748583f296ff44d45fcd75fa73295dfcee8"
+    },
+    {
+      "file": "se-utf8.def",
+      "sha256": "aeecc3b65c8002f23413bebe2aa7742e50e4ae4dc01198ef95cf3f05239af3be"
+    }
+  ],
+  "note": "Only acmart.cls is vendored; system packages and fonts require a TeX distribution."
+}

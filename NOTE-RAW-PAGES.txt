@@ -1,0 +1,5 @@
+Raw government/platform pages are NOT redistributed in this package.
+They are public documents; we provide manifest_url_sha256.csv mapping each
+document URL to the SHA-256 of the exact page snapshot we archived, plus the
+crawling scripts in the code repository to re-fetch them from the original
+government/operator portals.

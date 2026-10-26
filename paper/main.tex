@@ -1,0 +1,243 @@
+% GEC-Policy: corrected forecast v4.2 and saved-output extraction v1.4; internal submission draft
+% Build: pdflatex main.tex (three times)
+\documentclass[sigconf,anonymous,review]{acmart}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xspace}
+
+\newcommand{\dataset}{GEC-Policy\xspace}
+
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+\emergencystretch=1.5em  % eliminate marginal overfull boxes in justified text
+
+\acmConference[WWW 2027]{The Web Conference 2027}{Under review}{}
+\acmYear{2027}
+\copyrightyear{2027}
+\acmDOI{}
+\acmISBN{}
+
+
+\begin{document}
+
+\title{\dataset: A Policy-Event-Aligned Dataset and Benchmark for\\China's Green Electricity Certificate Market}
+
+\author{Anonymous Author(s)}
+\affiliation{\institution{Anonymous Institution}\country{}}
+\email{anonymous@example.com}
+
+\begin{abstract}
+China's Green Electricity Certificate (GEC) market has evolved toward compliance-driven renewable-electricity consumption, while relevant policies and price disclosures remain scattered across government and market websites. We present \dataset, a policy-event-aligned dataset and benchmark comprising a continuously collected policy corpus, a provenance-graded price panel, and 72 human-adjudicated events over 60 documents under a six-category, twenty-subtype ontology. We benchmark four recorded LLM configurations using 240 preserved outputs. A retrospective scoring correction distinguishes the 68 gold references whose evidence is nonempty, verbatim, and within the actual model input, while retaining the complete gold set and legacy scores. We also evaluate aggregate event-feature augmentation with statistical, neural, and zero-shot forecasting baselines. A separately frozen correction run uses causal historical filling, observed targets only, aligned neural inputs, fixed local model weights, and recorded random-date diagnostics. Results are reported across information settings with exploratory uncertainty estimates; they do not establish a causal policy effect or a deployable real-time trading strategy. The accompanying writing and reproduction packages preserve inputs, outputs, protocols, and version history for independent inspection.
+\end{abstract}
+
+\keywords{green electricity certificate, policy event extraction, time series forecasting, dataset, benchmark, Web mining, carbon neutrality}
+
+\begin{CCSXML}
+<ccs2012>
+<concept><concept_id>10002951.10003260.10003277</concept_id><concept_desc>Information systems~Web mining</concept_desc><concept_significance>500</concept_significance></concept>
+<concept><concept_id>10010147.10010257</concept_id><concept_desc>Computing methodologies~Machine learning</concept_desc><concept_significance>300</concept_significance></concept>
+<concept><concept_id>10010405.10010432</concept_id><concept_desc>Applied computing~Economics</concept_desc><concept_significance>100</concept_significance></concept>
+</ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Information systems~Web mining}
+\ccsdesc[300]{Computing methodologies~Machine learning}
+\ccsdesc[100]{Applied computing~Economics}
+
+\maketitle
+\hypersetup{pdftitle={GEC-Policy: A Policy-Event-Aligned Dataset and Benchmark for China's Green Electricity Certificate Market}}
+
+\section{Introduction}
+
+The global energy transition has entered a phase where renewable-energy consumption is no longer voluntary but mandated. China, the world's largest electricity consumer, operationalizes this mandate through the Green Electricity Certificate (GEC)---the sole proof of environmental attributes for renewable power~\cite{gec2023fullcoverage}, where one certificate corresponds to 1{,}000\,kWh of renewable generation. Since 2025, a series of policy documents has hardened the compliance architecture: new data centers at national computing hubs are required to reach a green-electricity consumption share of 80\%~\cite{gec2025opinion}, sectoral coverage has expanded from electrolytic aluminum to steel, cement, and polysilicon~\cite{gec2025opinion}, and provinces are assessed against renewable consumption responsibility weights with certificate-based gap-closing mechanisms~\cite{weight2025notice,measure2026order}.
+
+This compliance hardening has created a real and growing cost center. As an illustrative calculation, a single 100\,MW AI computing center consumes on the order of one billion kWh per year; at an 80\% mandate and the 2026-vintage average price of 6.10 CNY per certificate~\cite{nea2026jul}, its annual certificate bill approaches five million CNY---on top of electricity costs that already constitute the dominant share of operating expenses. Because certificates are priced by production year and newer vintages command premia (0.83 CNY for 2024, 3.26 for 2025, 6.10 for 2026 vintage in the July 2026 bulletin~\cite{nea2026jul}), \emph{when} and \emph{what} to buy are genuine optimization variables for every covered enterprise.
+
+Yet the market's price formation remains poorly understood. Unlike mature energy or carbon markets, GEC prices are hypothesized to be driven primarily by \emph{administrative policy events}: the issuance of provincial responsibility weights, the expansion of assessed sectors, changes in trading and retirement rules, and official price communications. These events are published as unstructured text scattered across government Web portals---ministry announcement feeds, power exchange bulletins, and press conference transcripts. The Web is therefore both the medium through which this market is governed and the primary data source for understanding it. We are not aware of a comparable policy-event-aligned resource for this market. Prior work~\cite{wang2025tgc} has applied machine learning to GEC price forecasting using price--volume data.
+
+We present \dataset, to our knowledge the first publicly documented dataset aligning policy events with price dynamics in China's GEC market. \dataset\ comprises three layers, built on a continuously running Web crawling infrastructure: (i) a corpus collected by adapters for four authoritative sources, with three yielding documents since September 2026, with historical backfill; (ii) a provenance-graded price panel combining official monthly bulletins, a newly launched official price index, weekly exchange reports, and daily snapshots of the full listing universe (26{,}812--36{,}713 active listings per snapshot); and (iii) a policy-event annotation layer grounded in a domain ontology of six event categories and twenty subtypes, produced by a dual-LLM annotation pipeline with human adjudication of all disagreements.
+
+Our benchmarks separate resource quality, extraction behavior, and forecasting utility. Among the recorded configurations, Gemini-3.8-Flash has the highest corrected event F1 (0.464). Human adjudication substantially changed the pre-annotations: 50 of the 66 spreadsheet-adjudicated events required modification, without establishing that this annotation design is uniquely necessary or optimal. In the corrected forecasting run, event features reduce MAE in 1/16 oracle and 1/16 lagged comparisons; real features outperform the mean random-date reference in 12/32 related cells. We report all cells and uncertainties rather than treating these related comparisons as independent coin tosses.
+
+\textbf{Contributions.} We contribute a traceable policy--price resource, a human-adjudicated annotation lineage with an explicit evidence-based scoring scope, and extraction and corrected forecasting benchmarks. This is a dataset-and-benchmark contribution, not a new forecasting architecture or a procurement optimization system. Scientific inputs, model-request identities, saved outputs, correction protocols, and earlier versions accompany the manuscript. Anonymous reviewer access and the archival URL remain submission tasks; a placeholder DOI is not an available resource.
+
+\section{Related Work}
+
+\subsection{Text-Driven Forecasting in Energy and Carbon Markets}
+Using textual information to forecast energy and environmental commodity prices has gained traction in the European carbon market. Pap et al.~\cite{hartvig2024eunews} forecast EU ETS allowance prices with online news, demonstrating measurable predictive value of Web text. Follow-up work incorporated temporal graph neural networks over news variables~\cite{textgnn2025carbon} and multi-task learning with news and search-engine trends for interval-valued EU ETS futures~\cite{multitask2025carbon}. For emerging carbon markets, a recent position paper advocates policy-aware and explainable forecasting frameworks~\cite{policyaware2026}. For green certificates specifically, the literature is thin: European Guarantees of Origin have been studied mainly through econometric price-formation analyses, and for China's Tradable Green Certificates (TGC), Wang et al.~\cite{wang2025tgc} study price forecasting by applying random forests, XGBoost, and ARIMA to price--volume data and analyzing spillovers with the carbon market via Diebold--Yilmaz indices. Our work differs from~\cite{wang2025tgc} in object and in method: we introduce the missing policy-event layer---extracted from Web policy documents with evidence-grounded LLM pipelines---and hypothesize certificate prices as driven by administrative events rather than purely by market microdata.
+
+\subsection{LLM-Based Event Extraction}
+Large language models have become practical tools for structured event extraction in finance and policy analysis, but their reliability as \emph{annotators} is contested: models hallucinate entities, conflate event types, and disagree with each other systematically. Schema-constrained decoding and evidence-span requirements are common mitigations. Our annotation methodology contributes an empirical data point to this debate: by having two independent LLM families annotate the same corpus and adjudicating every disagreement, we quantify inter-model behavioral divergence (recall conservatism versus scope drift) and document the corrections needed before these pre-annotations became adjudicated labels, echoing concerns from financial event extraction while extending them to a Chinese administrative-policy register.
+
+\subsection{Time-Series Forecasting and Baselines}
+Long-sequence forecasting has progressed from ARIMA and Prophet through deep architectures such as Informer~\cite{informer2021} and PatchTST~\cite{patchtst2023} to zero-shot time-series foundation models including TimesFM~\cite{timesfm2024} and Chronos~\cite{chronos2024}. Exogenous-event enrichment has a long history in economics---event studies and policy uncertainty indices~\cite{epu2016}---but its integration into neural forecasting for compliance-driven environmental markets remains underexplored, partly because datasets coupling events with prices are rare. Our forecasting benchmark deliberately includes strong simple baselines (ARIMA, zero-shot Chronos) and reports the complete corrected oracle, lagged and random-date comparisons as an exploratory baseline for future work.
+
+\subsection{Datasets at the Web--Policy--Market Interface}
+Datasets linking Web text to market outcomes are mostly financial (news--stock pairs, policy uncertainty indices). To our knowledge, \dataset\ is the first publicly documented dataset to align administrative policy events---with verbatim evidence spans---to prices of an environmental compliance certificate, under a domain-specific event ontology. This novelty statement is scoped to the resource design, not an exhaustive claim about all GEC datasets.
+
+\section{Market Background}
+\label{sec:background}
+
+We summarize the market mechanics necessary to follow the dataset design.
+
+\textbf{Instrument.} A Green Electricity Certificate represents the environmental attributes of 1{,}000\,kWh of renewable electricity and is the sole proof of green power consumption in China~\cite{gec2023fullcoverage}. Certificates are issued per generation project, priced by production year (vintage), and tradable on national and provincial platforms since 2017, with coverage extended to all renewable projects in August 2023~\cite{gec2023fullcoverage}.
+
+\textbf{Compliance architecture.} Demand is created administratively through renewable consumption responsibility weights assigned to each province~\cite{weight2025notice}, disaggregated to industries and, increasingly, individual consumers~\cite{measure2026order}. A counter-intuitive feature shapes the market's geography: the compute-dense western provinces hosting data-center clusters (Inner Mongolia, Ningxia, Gansu, Qinghai) carry the highest 2026 non-hydro weights (30\%), while eastern demand centers such as Guangdong (14.6\%) and Shanghai (12.4\%) carry far lower ones~\cite{weight2025notice}---so the physical location of a data center directly determines its certificate compliance cost.
+
+\textbf{Price behavior.} Certificate prices exhibit strong vintage structure: newer production-year certificates command premia (2024: 0.83; 2025: 3.26; 2026: 6.10 CNY average in the July 2026 official bulletin~\cite{nea2026jul}), with vintages trading at divergent levels within the same period (e.g., 3.27 versus 7.67 CNY listing-price weighted averages in our September 2026 snapshot). These events---assessment-scope expansions and weight adjustments---are hypothesized to affect demand and price formation, rather than prices being determined by marginal generation costs; the event types our ontology is designed to capture are exactly these hypothesized drivers.
+
+\section{Dataset Construction}
+
+\subsection{Layer 1: Web Corpus Infrastructure}
+\begin{itemize}
+  \item \textbf{Sources and scale.} Table~\ref{tab:sources} lists the four policy sources (235 documents as of 2026-10-17, growing daily via scheduled crawling) and the national GEC trading platform for listings. Price records (6{,}095 as of 2026-10-17) span (i) NEA monthly bulletins (25 consecutive months since 2024-07; per-vintage average prices since 2025-04), (ii) the official China GEC Price Index (base 2025-01=100, launched 2026-07), (iii) 49 stored weekly price records from the Guangzhou Power Exchange Center, consolidated to 47 observed report weeks (since 2025-09-22), and (iv) daily listing snapshots from the national trading platform (26{,}812--36{,}713 active listings per snapshot). Records carry a three-level provenance quality grade (A: official bulletins; B: media-cited official data; C: inferred).
+  \item \textbf{Engineering.} Adapters for JS-rendered portals (reverse-engineered JSON feeds and search-gateway token authentication); keyword filtering (7 domain keywords); URL-level deduplication; daily incremental crawling via scheduled task since 2026-09-12. The Inner Mongolia adapter is live but has produced zero keyword-matched documents so far: provincial announcements predominantly use the ``green-power direct connection'' register rather than our certificate keywords---an honest coverage gap we keep visible rather than silently broadening the keyword set after annotation freeze.
+\end{itemize}
+
+\begin{table}[t]
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \caption{Policy document sources (as of 2026-10-17).}
+  \label{tab:sources}
+  \begin{tabular}{llll}
+    \toprule
+    Source & Docs & Coverage & Note \\
+    \midrule
+    NDRC & 224 & 2021-08--2026-09 & site-search API \\
+    NEA & 9 & 2024-04--2026-06 & bulletin feeds \\
+    GZ Power Exchange & 2 & 2026-07--2026-09 & static pages \\
+    Inner Mongolia EA & 0 & -- & live, no hits yet \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Two kinds of price data.} We explicitly distinguish \emph{transaction} prices (officially reported average \emph{deal} prices: NEA monthly bulletins and GZ weekly reports, used as forecasting targets in Table~\ref{tab:forecast}) from \emph{listing} prices (seller ask prices in daily platform snapshots). Listing snapshots are used only for dataset description and market-microstructure observation (e.g., the vintage premia in Section~\ref{sec:background}), never as forecasting targets, because ask prices need not clear.
+
+\subsection{Layer 2: Event Ontology}
+Six categories, twenty subtypes (policy release; assessment scope expansion; responsibility weight adjustment; price signal; supply--demand shock; market rule change), each event a 10-field tuple including actor, object, constraint strength (binding\slash expected\slash advocatory), effective date, region, industries, price-direction prior, and an evidence-span field intended to ground the label in source text. The frozen human gold retains documented exceptions; extraction scoring treats those exceptions explicitly rather than silently repairing labels. The ontology and the earlier machine-output schema are retained separately; compatibility exceptions are documented in the annotation notes.
+
+\section{Annotation Methodology}
+\label{sec:annotation}
+
+\begin{itemize}
+  \item \textbf{Seed sampling.} 60 seed documents were drawn by three-dimensional stratification over source, publication-year bucket, and matched keyword, so that both event-rich and event-free documents are represented; the frozen gold set contains 41 documents with events and 19 without (5 of the latter explicitly confirmed event-free by the human reviewer).
+  \item \textbf{Pipeline.} Two independent LLM families (Kimi K3; GPT-6 Astra) annotate each document with identical prompts under a JSON schema; outputs are aligned by exact subtype plus evidence-span similarity ($\geq$0.5, greedy); field-level agreement uses normalization (date precision, strength lexicon).
+  \item \textbf{Pilot statistics (60 documents).} K3: 126 events; GPT-6: 110; matched pairs: 27; full-field agreement after normalization: 3; material-field disagreements: 24; recall-only events: 99 (K3) / 83 (GPT-6).
+  \item \textbf{Behavioral divergence.} Manual inspection identified differences in recall and extraction scope. Strict contiguous-source checks locate 104/126 K3 and 99/110 GPT-6 pre-annotation evidence spans. These saved outputs therefore do not have universal verbatim fidelity. Human adjudication and the formal 68-reference scoring scope are distinct from this raw pre-annotation check.
+  \item \textbf{Adjudication and staffing.} One domain researcher adjudicated all 206 disagreement records and spot-checked the 3 agreement records; the project lead made final rulings on the 6 records marked uncertain. The frozen gold set contains 72 events; Table~\ref{tab:goldsource} gives the provenance of the 66 events that entered through spreadsheet adjudication. We did not maintain a doubly-human-annotated subset, so a human--human Cohen's $\kappa$ cannot be computed; we list this as a limitation rather than reporting a machine--human agreement proxy as $\kappa$.
+  \item \textbf{Gold-set versioning.} gold v1 (66 events, from the adjudication spreadsheet) $\to$ v1.1 (+5 lead-adjudicated uncertain records) $\to$ v1.2 (one record split into two per lead ruling, 72 events, ontology v0.2). All versions, adjudication records and merge scripts are preserved in the internal research packages for inspection.
+\end{itemize}
+
+\begin{table}[t]
+  \centering
+  \caption{Provenance of the 66 spreadsheet-adjudicated gold events
+    (the frozen set has 72 = 66 + 5 lead rulings + 1 split record).}
+  \label{tab:goldsource}
+  \begin{tabular}{lrr}
+    \toprule
+    Gold event source & $n$ & \% \\
+    \midrule
+    Human modification of both models & 50 & 75.8 \\
+    Adopted GPT-6 Astra version & 13 & 19.7 \\
+    Dual-model agreement, confirmed & 2 & 3.0 \\
+    Adopted Kimi K3 version & 1 & 1.5 \\
+    \midrule
+    Total & 66 & 100 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Benchmark Tasks and Experimental Setup}
+
+\subsection{Task 1: Policy Event Extraction}
+We evaluate the preserved outputs of four requested model IDs: DeepSeek-Flash and DeepSeek-V4-Pro through the recorded official endpoint, and GPT-5.6-Sol and Gemini-3.8-Flash through a relay. These are historical request identities; the actual relay routing and underlying vendor model versions are not independently authenticated. All 240 records and the exact historical prompt are retained. The formal input was title, recorded date, and the first 6,000 Unicode characters of document text.
+
+\textbf{Scoring scope.} The dataset retains 72 events. The corrected score uses the 68 references whose evidence is nonempty, contiguous in the frozen source, and fully visible in the actual input. Four references fail this evidence constraint: two missing evidence fields, one non-contiguous citation, and one beyond the truncation. This is a retrospective scoring correction of existing outputs, not new inference or an independent test set.
+
+\textbf{Matching.} Predictions first match the 68 scorable references by exact subtype and \texttt{SequenceMatcher} evidence similarity at least 0.5, greedily in original prediction order. Each reference is consumed at most once. Still-unmatched predictions with nonempty evidence may then match excluded references with nonempty evidence by the same rule; these pairs are recorded as ignored, not TP, FP or FN. All other unmatched predictions are FP. Per model, TP+FN=68 and TP+FP+ignored equals the original prediction count. We retain the legacy 72-reference and nonempty 70-reference scores, exclusions, and threshold sensitivity. Fld-Agree is mean normalized agreement over four fields on matched pairs; Evid-Sim is mean matched evidence similarity, not a standard extraction F1.
+
+\subsection{Task 2: Aggregate Event-Feature-Augmented Price Forecasting}
+\textbf{Targets and information.} We use transaction prices: 47 observed weekly exchange prices on a fixed 52-week grid, and 16 monthly points per series. Initial training is 26 weekly grid points or 10 monthly points. Only the 23 observed weekly targets and 6 monthly targets are scored. At each origin, missing historical weeks are forward-filled using only earlier observations; target and future values cannot enter training. The monthly aggregate is volume-weighted when quantities exist and otherwise a documented simple mean. This is a retrospective report-period benchmark: actual publication lags and first-public-availability times are not fully identified.
+
+\textbf{Features and models.} We aggregate 72 gold events and four additional curated markers after removing curated entries whose document already has gold events. Recorded document dates are not guaranteed market-first-disclosure timestamps. Features are event-entry count, weighted count, and up/down-prior counts. Oracle permits target-period event features; lag1 shifts them one period and is only an event-availability proxy. Baselines are Naive, period-4 seasonal Naive, ARIMA, Prophet, LSTM, a local patch Transformer, and Chronos-t5-tiny zero-shot. The key PatchTST in artifacts denotes the local patch Transformer, not the official full PatchTST implementation. Neural training and inference use the same price history and event timing; scalers use training data only. Chronos uses pinned local weights and an isolated fixed sampling seed.
+
+\textbf{Evaluation and diagnostics.} Expanding-origin, one-step evaluation uses identical observed targets across variants. We report MAE, RMSE, MAPE, tie-aware directional accuracy with its denominator, and move rate. Hand-selected policy windows are exploratory. Random-date references preserve joint feature vectors over three seeds; per-seed maps and fold predictions are saved. All 32 augmentation cells receive paired percentile bootstrap intervals and exploratory h=1 DM approximations. Shared rolling histories, monthly n=6, and multiple comparisons preclude confirmatory interpretation of isolated p-values. The correction protocol and job manifest were frozen before this rerun, after the historical results had already been examined.
+
+\section{Results}
+
+\subsection{Extraction}
+Table~\ref{tab:extraction} reports the corrected saved-output evaluation. Gemini-3.8-Flash attains the highest event F1 (0.464) among these recorded configurations. The ordering is stable over the displayed thresholds. The score concerns evidence-locatable references under the historical input limit; it does not measure full-document extraction or independently authenticate model families. All four configurations have one ignored prediction at the main threshold. Historical usage and explicit cost assumptions are retained, rather than asserted as current prices.
+
+\input{tab_extraction}
+
+\begin{table}[t]
+\centering\small
+\caption{Threshold sensitivity of the corrected event F1.}
+\label{tab:threshold}
+\begin{tabular}{lccc}\toprule
+Model & $\theta=0.4$ & $\theta=0.5$ & $\theta=0.6$\\\midrule
+    DeepSeek-Flash & 0.247 & 0.241 & 0.235 \\
+    DeepSeek-V4-Pro & 0.357 & 0.357 & 0.324 \\
+    GPT-5.6-Sol & 0.435 & 0.417 & 0.396 \\
+    Gemini-3.8-Flash & 0.477 & 0.464 & 0.437 \\
+\bottomrule\end{tabular}\end{table}
+
+\subsection{Forecasting}
+Table~\ref{tab:forecast} reports the corrected weekly benchmark; monthly series and all diagnostics are in Appendix~\ref{app:forecast}. Across 16 family--series comparisons, event augmentation reduces MAE in 1/16 oracle settings and 1/16 lagged settings. Real features beat the mean random-date reference in 12/32 related cells. These cells are not independent trials and this count is not a formal chance-level or equivalence test. The lowest weekly baseline MAEs are ARIMA (MAE 0.378); Chronos-t5-tiny(zs) (MAE 0.411); Patch Transformer (local) (MAE 0.487). We provide every signed delta, interval, per-seed diagnostic and fold prediction. Effects should be read by series and information setting, with small-sample and retrospective-analysis limits, rather than generalized as a causal policy effect.
+
+\input{tab_forecast}
+
+\section{Discussion and Limitations}
+\label{sec:discussion}
+
+We reiterate the scope of the contribution: this paper delivers dataset construction, annotation methodology, a reproducible benchmark, and an empirical characterization of a young compliance market; it deliberately does not propose a new forecasting architecture.
+
+\subsection{Extraction and annotation}
+The resource has 60 gold documents and 72 events, including only three price-signal events, with one principal human adjudicator and lead rulings on uncertain records. There is no independently double-human-annotated subset, so classical inter-annotator kappa is unavailable. The 68-reference scoring scope and ignored predictions are explicit; complete labels and original outputs remain archived. Evidence-string matching is a strict operational proxy, not semantic event equivalence. Human adjudication used revised ontology rules after the original prompt, another boundary of the saved-output comparison. Requested relay model identities are not independently authenticated, and fresh endpoint calls may not reproduce these historical outputs.
+
+\subsection{Forecasting}
+The correction removes demonstrated bidirectional-imputation leakage and neural input misalignment while retaining old artifacts for audit. It evaluates 23 true weekly targets and six monthly targets, with causal historical fills explicitly marked. The local patch Transformer is an implementation-specific baseline. Event features are sparse aggregate entries over 60 seed documents plus curated markers, with incomplete coverage and date fields that may mix document and web-publication dates. Oracle target-period features and unmodeled price-disclosure lags prohibit interpreting this as a deployable real-time procurement backtest. The hand-selected event windows and correction analyses are exploratory. The 32 comparisons share data and training histories; iid bootstrap and small-sample DM approximations are descriptive and do not establish equivalence or absence of a policy effect. Both favorable and unfavorable cells are retained.
+
+\subsection{Dataset limitations}
+The corpus is keyword-filtered and concentrated in NDRC sources; enabling a provincial adapter does not establish provincial coverage. The complete gold covers 60 of 235 archived documents at the current snapshot. Daily listing collection has gaps and listing quotes are not clearing prices. Cross-vintage price differences are not multi-year price growth. Coverage matrices, stored source pages, annotation decisions, correction protocols, saved outputs and version hashes make these boundaries inspectable; they do not eliminate them. Generalization to other certificate markets is untested.
+
+\section{Ethics and Data Availability}
+Policy and market disclosures were collected from public sources with rate limits and no login-only content. The internal writing and reproduction packages preserve the fixed data, adjudication assets, original outputs, correction protocol, code and historical versions. Project code and derived annotations/tables have separate license scopes; archived third-party pages and platform snapshots are not automatically licensed for public redistribution. Anonymous reviewer access, author approval and archival publication remain submission tasks. A placeholder DOI is not represented as a released resource. No API credentials are included in the packages.
+
+\appendix
+\section{Forecasting Appendix}
+\label{app:forecast}
+Monthly-series results (Tables~\ref{tab:app_monthly_a}--\ref{tab:app_monthly_c}), the placebo check (Table~\ref{tab:app_placebo}), feature-group ablation and the lag scan (Table~\ref{tab:app_features}), and per-cell deltas with bootstrap 95\% confidence intervals for all ablation cells (Table~\ref{tab:app_ci}).
+
+\input{tab_app_monthly_a}
+\input{tab_app_monthly_b}
+\input{tab_app_monthly_c}
+\input{tab_app_placebo}
+\input{tab_app_features}
+\input{tab_app_ci}
+
+\begin{thebibliography}{9}
+\bibitem{hartvig2024eunews} A.~Pap, A.~D. Hartvig, and P.~P\'alos. EU Climate Change News Index: Forecasting EU ETS prices with online news. \emph{ICLR 2024 Workshop on Tackling Climate Change with Machine Learning}.
+\bibitem{wang2025tgc} Y.~Wang et al. Price dynamics and forecasting of China's Tradable Green Certificates: An analysis of linkages with the carbon emissions trading market. \emph{Energy Policy}, 2025.
+\bibitem{textgnn2025carbon} D.~Zhang et al. A text-based framework for carbon price forecasting via multivariate temporal graph neural network. \emph{The Journal of Supercomputing}, 2025.
+\bibitem{multitask2025carbon} D.~Liu, L.~Wang, S.~Lin, and Z.~Tang. A novel multi-task learning framework for interval-valued carbon price forecasting using online news and search engine data. \emph{Mathematics}, 13(3):455, 2025.
+\bibitem{policyaware2026} S.~U. Begum, M.~N. Ullah, and M.~A.~G. Khan. Toward explainable and policy-aware AI for carbon credit price prediction: A research framework for emerging carbon markets. \emph{arXiv:2609.01765}, 2026.
+\bibitem{informer2021} H.~Zhou et al. Informer: Beyond efficient transformer for long sequence time-series forecasting. \emph{AAAI}, 2021.
+\bibitem{patchtst2023} Y.~Nie et al. A time series is worth 64 words: Long-term forecasting with transformers. \emph{ICLR}, 2023.
+\bibitem{timesfm2024} A.~Das et al. A decoder-only foundation model for time-series forecasting. \emph{ICML}, 2024.
+\bibitem{chronos2024} A.~F. Ansari et al. Chronos: Learning the language of time series. \emph{TMLR}, 2024.
+\bibitem{epu2016} S.~R. Baker, N.~Bloom, S.~J. Davis. Measuring economic policy uncertainty. \emph{Quarterly Journal of Economics}, 131(4), 2016.
+
+\bibitem{gec2023fullcoverage} National Development and Reform Commission, National Energy Administration, Ministry of Finance. Notice on full coverage of renewable energy green electricity certificates to promote renewable electricity consumption (Fa Gai Neng Yuan [2023] No.~1044). Official document, 2023-08-03.
+\bibitem{gec2025opinion} National Development and Reform Commission et al. Opinions on promoting high-quality development of the renewable energy green electricity certificate market (Fa Gai Neng Yuan [2025] No.~262). Official document, March 2025; signed March 6, web publication March 18.
+\bibitem{weight2025notice} NDRC General Office, NEA General Office. Notice on 2025 renewable electricity consumption responsibility weights and related matters (Fa Gai Ban Neng Yuan [2025] No.~669). Official document, 2025-07-11.
+\bibitem{measure2026order} NDRC, MIIT, MOHURD, and Ministry of Transport. Measures for renewable electricity consumption minimum-share targets and the responsibility-weight system (Joint Order No.~42 of 2026). Official document, 2026-06-05.
+\bibitem{nea2026jul} National Energy Administration. National green electricity certificate issuance and trading data for July 2026 (monthly bulletin, per-vintage average prices). Official bulletin, 2026-08-26. \url{https://www.nea.gov.cn/20260826/ec18dac54d4f4e26a6a5e5fcca27e74f/c.html}
+\end{thebibliography}
+
+\end{document}

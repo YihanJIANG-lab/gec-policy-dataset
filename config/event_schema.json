@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "绿证市场政策事件抽取输出格式 v0.1",
+  "comment": "LLM 抽取的结构化输出 schema，与 01_研究文档/event_ontology.md v0.1 对齐；用作 API 的 response_format / structured output 约束",
+  "type": "object",
+  "required": ["events"],
+  "properties": {
+    "events": {
+      "type": "array",
+      "description": "本文档中抽取到的全部政策事件；无事件则为空数组",
+      "items": {
+        "type": "object",
+        "required": ["event_type", "subtype", "actor", "strength", "effective_date", "region", "price_direction_prior", "evidence_span"],
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "enum": ["A", "B", "C", "D", "E", "F"],
+            "description": "A政策发布 B考核范围扩容 C消纳权重调整 D价格信号 E供需冲击 F市场规则变更"
+          },
+          "subtype": {
+            "type": "string",
+            "enum": ["A1","A2","A3","A4","B1","B2","B3","C1","C2","C3","D1","D2","D3","E1","E2","E3","F1","F2","F3","F4"]
+          },
+          "actor": { "type": "string", "description": "发布主体，规范化机构名" },
+          "object": { "type": "string", "description": "受影响对象，可为空字符串" },
+          "strength": { "type": "string", "enum": ["约束性", "预期性", "倡导性"] },
+          "effective_date": { "type": "string", "description": "YYYY-MM-DD / YYYY-MM / 未明确" },
+          "region": { "type": "string", "description": "全国 或 省份名" },
+          "industry": { "type": "array", "items": { "type": "string" } },
+          "price_direction_prior": { "type": "string", "enum": ["上行", "下行", "中性", "不明"] },
+          "evidence_span": { "type": "string", "maxLength": 200, "description": "原文证据片段，必填，无证据视为幻觉" }
+        }
+      }
+    }
+  }
+}

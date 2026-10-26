@@ -1,0 +1,32 @@
+% Auto-generated: feature-group ablation and lag scan (appendix Table A3)
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \caption{Feature-group ablation and lag scan (weekly series, oracle features)}
+  \label{tab:app_features}
+  \begin{tabular}{llccc}
+    \toprule
+    Variant & Model & MAE & RMSE & Dir.Acc(\%) \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Feature-group ablation (base MAE: ARIMA 0.378, Patch Transformer (local) 0.487)}}\\
+    +event\_count & ARIMA & 0.422 & 0.583 & 57 \\
+    +strength\_sum & ARIMA & 0.441 & 0.608 & 52 \\
+    +up\_count & ARIMA & 0.394 & 0.550 & 61 \\
+    +down\_count & ARIMA & 0.389 & 0.535 & 65 \\
+    +event\_count & Patch Transformer (local) & 0.585 & 0.780 & 43 \\
+    +strength\_sum & Patch Transformer (local) & 0.561 & 0.752 & 52 \\
+    +up\_count & Patch Transformer (local) & 0.637 & 0.827 & 48 \\
+    +down\_count & Patch Transformer (local) & 0.621 & 0.785 & 48 \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Lag scan (full features)}}\\
+    lag=0 & ARIMA & 0.638 & 0.960 & 57 \\
+    lag=1 & ARIMA & 0.463 & 0.591 & 57 \\
+    lag=2 & ARIMA & 0.606 & 1.191 & 57 \\
+    lag=4 & ARIMA & 0.613 & 0.949 & 74 \\
+    lag=0 & Patch Transformer (local) & 0.618 & 0.845 & 52 \\
+    lag=1 & Patch Transformer (local) & 0.521 & 0.705 & 61 \\
+    lag=2 & Patch Transformer (local) & 0.522 & 0.659 & 48 \\
+    lag=4 & Patch Transformer (local) & 0.456 & 0.589 & 78 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
